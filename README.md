@@ -3,8 +3,8 @@
 Static site for [seeyouyou.app](https://seeyouyou.app), hosting:
 
 - A minimal landing page
-- The SeeYouYou Privacy Policy (v1.2) at `/privacy/`
-- The SeeYouYou Terms of Service (v1.2) at `/terms/`
+- The SeeYouYou Privacy Policy (v1.3) at `/privacy/`
+- The SeeYouYou Terms of Service (v1.3) at `/terms/`
 
 The legal text on this site is rendered word-for-word from the source
 Markdown bundled inside the SeeYouYou Android app, so the in-app version
@@ -27,5 +27,5 @@ Then open http://localhost:8000/.
 
 ## About
 
-SeeYouYou is operated by Avamelia, sole proprietor, Denmark.
-Contact: Geekeez@gmail.com
+SeeYouYou is operated by AvAmeliA, sole proprietor, Denmark.
+Contact: Geekez@gmail.com
