@@ -115,11 +115,26 @@
 }
 .slide-panel-perspective {
   width: min(1180px, 100%);
+  perspective: 1200px;
+  perspective-origin: 50% 30%;
+  transform-style: preserve-3d;
   position: relative;
 }
 .slide-panel-inner {
+  transform-style: preserve-3d;
   will-change: transform, opacity;
   transition: transform .25s var(--ease-decel);
+}
+/* Renders OUTSIDE the perspective wrapper — for interactive CTAs that
+   must not be inside the 3D rendering context (clicks would mis-route). */
+.slide-panel-footer {
+  width: min(1180px, 100%);
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+  position: relative;
+  z-index: 2;
+  will-change: transform, opacity;
 }
 
 .frame-tag {

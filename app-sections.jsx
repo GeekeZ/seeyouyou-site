@@ -383,8 +383,17 @@ function PrivacySection() {
     "Audio is processed in real time and immediately discarded. Transcripts never appear in our logs — not in production, not in crash reports, not in debug builds.",
     "Delete your account anytime. We delete what we have within 30 days.",
   ];
+  const privacyFooter = (
+    <a
+      className="link-arrow"
+      href="/privacy/"
+      onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.location.assign('/privacy/'); }}
+    >Read the full Privacy Policy
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  );
   return (
-    <SlidePanel className="panel-privacy" frame="72 / 82">
+    <SlidePanel className="panel-privacy" frame="72 / 82" footer={privacyFooter}>
       <div id="privacy" className="privacy-wrap" data-screen-label="07 Privacy">
         <div className="privacy-grid">
           <div>
@@ -393,13 +402,6 @@ function PrivacySection() {
             <p className="lede">
               Privacy isn't a feature here. It's the foundation. The architecture is built so we couldn't sell your conversations even if we wanted to — there's nothing to sell.
             </p>
-            <a
-              className="link-arrow"
-              href="/privacy/"
-              onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.location.assign('/privacy/'); }}
-            >Read the full Privacy Policy
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-            </a>
           </div>
           <ul className="privacy-list">
             {points.map((p, i) => (
@@ -478,23 +480,25 @@ function FAQSection() {
 
 /* ---------- Email capture + download ---------- */
 function EmailSection() {
+  const downloadFooter = (
+    <a
+      className="cta-primary big"
+      href={window.TESTING_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(window.TESTING_URL, '_blank', 'noopener,noreferrer'); }}
+    >
+      <PlayBadge/>
+    </a>
+  );
   return (
-    <SlidePanel className="panel-email" frame="92 / 98">
+    <SlidePanel className="panel-email" frame="92 / 98" footer={downloadFooter}>
       <div id="email" className="email-wrap" data-screen-label="09 Email">
         <div className="email-grid">
           <div id="download" className="download-card">
             <h3>Get early access on Google Play</h3>
             <p>60 free credits at sign-up, +10 daily. No card needed.</p>
-            <a
-              className="cta-primary big"
-              href={window.TESTING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(window.TESTING_URL, '_blank', 'noopener,noreferrer'); }}
-            >
-              <PlayBadge/>
-            </a>
-            <p className="dl-meta">Free · Android 9+ · Age 16+ · Internal testing</p>
+            <p className="dl-meta">Free · Android 9+ · Age 16+ · Internal testing — tap the badge below</p>
           </div>
           <div className="email-card">
             <span className="eyebrow">iOS</span>

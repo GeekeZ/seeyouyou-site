@@ -49,13 +49,19 @@ function ScrollFloatHeadline({ text, scrollProgress }) {
 
 /* ---------- SlidePanel ----------
    Slides from y:80px to y:0 + fade as the slot scrolls into view.
-   2D-only — no perspective or preserve-3d, because 3D rendering contexts
-   on the parent can intercept real-browser clicks on interactive children
-   (Chrome/Firefox hit-testing inside perspective contexts is fragile).
-   The on-mouse-move 3D tilt was removed for the same reason. */
-function SlidePanel({ children, className = '', frame = '0/100', tilt = true }) {
+   The inner card tilts on mousemove (3D perspective + rotateX/Y).
+   IMPORTANT: 3D rendering contexts (perspective + preserve-3d) cause
+   real-browser hit-testing problems on interactive descendants — clicks
+   can get routed to the perspective wrapper instead of the button inside.
+   That's why this component has a `footer` prop: interactive CTAs (Play
+   badge, link-arrow) should be placed in `footer` so they render OUTSIDE
+   the 3D context, below the tilting card. Slide animation still applies
+   to the footer via a separate (2D-only) translateY. */
+function SlidePanel({ children, footer, className = '', frame = '0/100', tilt = true }) {
   const wrapRef = useRef(null);
+  const innerRef = useRef(null);
   const [progress, setProgress] = useState(0); // 0..1
+  const [tiltState, setTiltState] = useState({ rx: 0, ry: 0, tx: 0, ty: 0 });
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -83,6 +89,24 @@ function SlidePanel({ children, className = '', frame = '0/100', tilt = true }) 
     };
   }, []);
 
+  function onMouseMove(e) {
+    if (!tilt) return;
+    const rect = innerRef.current.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = (e.clientX - cx) / rect.width;
+    const dy = (e.clientY - cy) / rect.height;
+    setTiltState({
+      rx: -dy * 4,
+      ry: dx * 4,
+      tx: dx * 6,
+      ty: dy * 6,
+    });
+  }
+  function onMouseLeave() {
+    setTiltState({ rx: 0, ry: 0, tx: 0, ty: 0 });
+  }
+
   // Slide-up + decelerate easing
   const eased = 1 - Math.pow(1 - progress, 3);
   const slideY = (1 - eased) * 80; // px
@@ -90,11 +114,14 @@ function SlidePanel({ children, className = '', frame = '0/100', tilt = true }) 
 
   return (
     <div ref={wrapRef} className={`slide-panel-slot ${className}`}>
-      <div className="slide-panel-perspective">
+      <div className="slide-panel-perspective"
+           onMouseMove={onMouseMove}
+           onMouseLeave={onMouseLeave}>
         <div
+          ref={innerRef}
           className="slide-panel-inner"
           style={{
-            transform: `translateY(${slideY}px)`,
+            transform: `translateY(${slideY}px) rotateX(${tiltState.rx}deg) rotateY(${tiltState.ry}deg) translate3d(${tiltState.tx}px, ${tiltState.ty}px, 0)`,
             opacity,
           }}
         >
@@ -102,6 +129,17 @@ function SlidePanel({ children, className = '', frame = '0/100', tilt = true }) 
         </div>
         <span className="frame-tag" aria-hidden="true">f {frame}</span>
       </div>
+      {footer && (
+        <div
+          className="slide-panel-footer"
+          style={{
+            transform: `translateY(${slideY}px)`,
+            opacity,
+          }}
+        >
+          {footer}
+        </div>
+      )}
     </div>
   );
 }
