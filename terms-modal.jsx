@@ -7,7 +7,7 @@ const TERMS_DATA = {
   version: '1.6',
   effective: '2026-05-13',
   updated: '2026-05-13',
-  provider: 'AvAmeliA (sole proprietor), Denmark',
+  provider: 'AvAmeliA (sole proprietor), Denmark — CVR: 44612194',
   contact: 'support@seeyouyou.app',
   intro: 'These Terms of Service ("Terms") govern your use of the SeeYouYou mobile application ("the App," "we," "us," "our"). By creating an account or using the App, you agree to these Terms. If you do not agree, do not use the App. We\'ve written these in plain language. If anything is unclear, email us at support@seeyouyou.app.',
   sections: [

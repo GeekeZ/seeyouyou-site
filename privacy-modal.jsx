@@ -7,7 +7,7 @@ const PRIVACY_DATA = {
   version: '1.6',
   effective: '2026-05-13',
   updated: '2026-05-13',
-  controller: 'AvAmeliA (sole proprietor), Denmark',
+  controller: 'AvAmeliA (sole proprietor), Denmark — CVR: 44612194',
   contact: 'support@seeyouyou.app',
   appId: 'app.seeyouyou.live',
   intro: 'This Privacy Policy explains how SeeYouYou ("the App," "we," "us") handles your personal data when you use the SeeYouYou mobile application. We\'ve written this in plain language. If anything is unclear, email us at support@seeyouyou.app.',
