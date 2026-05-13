@@ -211,12 +211,18 @@
   gap: 12px;
   text-decoration: none;
   background: rgba(0,0,0,0.6);
-  border: 1px solid rgba(167, 139, 250, 0.35);
+  border: 1px solid rgba(167, 139, 250, 0.55);
   border-radius: 14px;
   padding: 12px 22px;
-  transition: transform .2s var(--ease-decel), border-color .2s;
+  cursor: pointer;
+  box-shadow: 0 6px 18px -8px rgba(124, 58, 237, 0.55);
+  transition: transform .2s var(--ease-decel), border-color .2s, box-shadow .2s;
 }
-.cta-primary:hover { transform: translateY(-1px); border-color: rgba(167,139,250,0.7); }
+.cta-primary:hover {
+  transform: translateY(-1px);
+  border-color: rgba(167,139,250,0.9);
+  box-shadow: 0 10px 24px -6px rgba(124, 58, 237, 0.7);
+}
 .cta-primary.big { padding: 14px 26px; }
 
 .play-badge { display: inline-flex; align-items: center; gap: 12px; }
@@ -835,10 +841,16 @@
   color: var(--brand-violet-deep);
   text-decoration: none;
   margin-top: 16px;
-  border-bottom: 1px solid var(--border-stronger);
+  border-bottom: 1.5px solid var(--brand-violet-deep);
   padding-bottom: 4px;
+  cursor: pointer;
+  transition: color .2s, border-color .2s, gap .2s;
 }
-.link-arrow:hover { color: var(--brand-blue-saturated); }
+.link-arrow:hover {
+  color: var(--brand-blue-saturated);
+  border-bottom-color: var(--brand-blue-saturated);
+  gap: 12px;
+}
 .privacy-list {
   list-style: none; padding: 0; margin: 0;
   display: flex; flex-direction: column; gap: 14px;
@@ -1415,8 +1427,6 @@
   box-shadow: 0 10px 22px -4px rgba(124, 58, 237, 0.55);
 }
 
-/* Make privacy section trigger feel clickable */
-.link-arrow[data-action="privacy"] { cursor: pointer; }
 
 @media (max-width: 640px) {
   .privacy-modal-overlay { padding: 12px; }
