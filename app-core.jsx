@@ -48,13 +48,14 @@ function ScrollFloatHeadline({ text, scrollProgress }) {
 }
 
 /* ---------- SlidePanel ----------
-   Slides from y:100% to y:0% as the slot scrolls from
-   "top bottom" → "top top". Tilts on mousemove. */
+   Slides from y:80px to y:0 + fade as the slot scrolls into view.
+   2D-only — no perspective or preserve-3d, because 3D rendering contexts
+   on the parent can intercept real-browser clicks on interactive children
+   (Chrome/Firefox hit-testing inside perspective contexts is fragile).
+   The on-mouse-move 3D tilt was removed for the same reason. */
 function SlidePanel({ children, className = '', frame = '0/100', tilt = true }) {
   const wrapRef = useRef(null);
-  const innerRef = useRef(null);
   const [progress, setProgress] = useState(0); // 0..1
-  const [tiltState, setTiltState] = useState({ rx: 0, ry: 0, tx: 0, ty: 0 });
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -67,8 +68,6 @@ function SlidePanel({ children, className = '', frame = '0/100', tilt = true }) 
       if (!el) return;
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight;
-      // Start when top hits bottom of viewport (rect.top === vh)
-      // Finish when top reaches top of viewport (rect.top === 0)
       const p = 1 - Math.min(1, Math.max(0, rect.top / vh));
       setProgress(p);
     }
@@ -84,24 +83,6 @@ function SlidePanel({ children, className = '', frame = '0/100', tilt = true }) 
     };
   }, []);
 
-  function onMouseMove(e) {
-    if (!tilt) return;
-    const rect = innerRef.current.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    const dx = (e.clientX - cx) / rect.width;
-    const dy = (e.clientY - cy) / rect.height;
-    setTiltState({
-      rx: -dy * 4,    // tilt up/down
-      ry: dx * 4,     // tilt left/right
-      tx: dx * 6,
-      ty: dy * 6,
-    });
-  }
-  function onMouseLeave() {
-    setTiltState({ rx: 0, ry: 0, tx: 0, ty: 0 });
-  }
-
   // Slide-up + decelerate easing
   const eased = 1 - Math.pow(1 - progress, 3);
   const slideY = (1 - eased) * 80; // px
@@ -109,14 +90,11 @@ function SlidePanel({ children, className = '', frame = '0/100', tilt = true }) 
 
   return (
     <div ref={wrapRef} className={`slide-panel-slot ${className}`}>
-      <div className="slide-panel-perspective"
-           onMouseMove={onMouseMove}
-           onMouseLeave={onMouseLeave}>
+      <div className="slide-panel-perspective">
         <div
-          ref={innerRef}
           className="slide-panel-inner"
           style={{
-            transform: `translateY(${slideY}px) rotateX(${tiltState.rx}deg) rotateY(${tiltState.ry}deg) translate3d(${tiltState.tx}px, ${tiltState.ty}px, 0)`,
+            transform: `translateY(${slideY}px)`,
             opacity,
           }}
         >
