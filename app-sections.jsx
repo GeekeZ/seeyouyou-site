@@ -530,6 +530,7 @@ function Footer() {
         <ul className="footer-links">
           <li><a href="#" data-action="privacy">Privacy Policy</a></li>
           <li><a href="#" data-action="terms">Terms of Service</a></li>
+          <li><a href="/account-deletion/">Account deletion</a></li>
           <li><a href="mailto:support@seeyouyou.app">support@seeyouyou.app</a></li>
         </ul>
         <p className="footer-made">Made by AvAmeliA · Denmark</p>
