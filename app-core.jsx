@@ -215,7 +215,13 @@ function Hero({ scrollProgress }) {
           opacity: Math.max(0, 1 - scrollProgress / 0.06),
         }}>
           <div className="cta-primary-stack">
-            <a className="cta-primary" href={window.TESTING_URL} target="_blank" rel="noopener noreferrer">
+            <a
+              className="cta-primary"
+              href={window.TESTING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(window.TESTING_URL, '_blank', 'noopener,noreferrer'); }}
+            >
               <PlayBadge />
             </a>
             <a className="hero-ios" href="#email" onClick={(e)=>{e.preventDefault(); document.getElementById('email').scrollIntoView({behavior:'smooth'});}}>

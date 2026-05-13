@@ -393,7 +393,11 @@ function PrivacySection() {
             <p className="lede">
               Privacy isn't a feature here. It's the foundation. The architecture is built so we couldn't sell your conversations even if we wanted to — there's nothing to sell.
             </p>
-            <a className="link-arrow" href="/privacy/">Read the full Privacy Policy
+            <a
+              className="link-arrow"
+              href="/privacy/"
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.location.assign('/privacy/'); }}
+            >Read the full Privacy Policy
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
             </a>
           </div>
@@ -481,7 +485,13 @@ function EmailSection() {
           <div id="download" className="download-card">
             <h3>Get early access on Google Play</h3>
             <p>60 free credits at sign-up, +10 daily. No card needed.</p>
-            <a className="cta-primary big" href={window.TESTING_URL} target="_blank" rel="noopener noreferrer">
+            <a
+              className="cta-primary big"
+              href={window.TESTING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(window.TESTING_URL, '_blank', 'noopener,noreferrer'); }}
+            >
               <PlayBadge/>
             </a>
             <p className="dl-meta">Free · Android 9+ · Age 16+ · Internal testing</p>
