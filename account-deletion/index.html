@@ -65,9 +65,9 @@
                 <span className="pm-dot"/>
                 <span>Account deletion</span>
               </div>
-              <h1 className="privacy-modal-title">Account deletion</h1>
+              <h1 className="privacy-modal-title">Account deletion for SeeYouYou</h1>
               <p className="privacy-modal-meta">
-                Controller: AvAmeliA (sole proprietor), Denmark — CVR: 44612194 · Contact: support@seeyouyou.app
+                Operated by AvAmeliA (CVR: 44612194), Denmark
               </p>
             </div>
           </header>
@@ -75,93 +75,66 @@
           <div className="privacy-modal-body">
 
             <p className="privacy-intro">
-              You can delete your SeeYouYou account at any time. This page explains exactly how to request deletion, what is removed, what is kept (and why), and how long the process takes.
+              SeeYouYou is operated by AvAmeliA (CVR: 44612194), Denmark. This page describes how you can delete your SeeYouYou account and the data associated with it.
             </p>
 
             <section className="privacy-section">
-              <h2 className="privacy-section-title"><span>1.</span> How to delete your account</h2>
+              <h2 className="privacy-section-title"><span>How to delete your account</span></h2>
+              <p>Two ways, both available at any time:</p>
 
-              <h3 style={{ fontSize: '15px', fontWeight: 700, margin: '14px 0 6px', color: 'var(--text-primary-navy)' }}>From inside the app (recommended)</h3>
-              <ol style={{ margin: '0 0 14px 18px', padding: 0, lineHeight: 1.7 }}>
-                <li>Open the SeeYouYou app on your Android device.</li>
-                <li>Go to the <strong>Profile</strong> screen.</li>
-                <li>Tap <strong>Delete account</strong>.</li>
-                <li>Confirm the request when prompted.</li>
-              </ol>
-              <p>Your request is recorded immediately and processed within <strong>30 days</strong>.</p>
+              <p style={{ marginTop: '14px' }}>
+                <strong>1. In the app (fastest):</strong><br/>
+                Open SeeYouYou → Profile → "Delete account" → confirm.
+              </p>
 
-              <h3 style={{ fontSize: '15px', fontWeight: 700, margin: '18px 0 6px', color: 'var(--text-primary-navy)' }}>By email (if you no longer have the app installed)</h3>
-              <p>
-                Email <a href="mailto:support@seeyouyou.app?subject=Account%20deletion%20request" style={{ color: 'var(--brand-violet-deep)', fontWeight: 600 }}>support@seeyouyou.app</a> from the email address tied to your account, with the subject line <em>"Account deletion request"</em>. Include your account email if you're writing from a different address. We will verify your identity and process the request within 30 days.
+              <p style={{ marginTop: '14px' }}>
+                <strong>2. By email:</strong><br/>
+                Send an email to <a href="mailto:support@seeyouyou.app?subject=Account%20Deletion%20Request" style={{ color: 'var(--brand-violet-deep)', fontWeight: 600 }}>support@seeyouyou.app</a> with the subject line "Account Deletion Request." Include the email address associated with your account. We process deletion requests within 30 days.
               </p>
             </section>
 
             <section className="privacy-section">
-              <h2 className="privacy-section-title"><span>2.</span> What gets deleted</h2>
-              <p>When your deletion request is processed, we remove the following from our systems:</p>
+              <h2 className="privacy-section-title"><span>What gets deleted</span></h2>
+              <p>When your account is deleted, we remove:</p>
               <ul style={{ margin: '8px 0 0 18px', padding: 0, lineHeight: 1.7 }}>
-                <li>Your account record (UID, email, sign-in method, display name).</li>
-                <li>Your session metadata — start/end times, language pairs used, credit consumption, end reason.</li>
-                <li>Your credit balance and all balance-change history.</li>
-                <li>Your acceptance records (which versions of the Privacy Policy and Terms you accepted, and when). Note: these are stored on your device in app preferences; clearing app data or uninstalling the app also removes them locally.</li>
-                <li>The deletion-request audit document itself — once your account is processed, the pending-request record is removed alongside everything else.</li>
+                <li>Your account record (email address, display name, user ID)</li>
+                <li>Your credit balance (any remaining free, pack, or subscription credits)</li>
+                <li>Your acceptance records (Privacy Policy / Terms of Service version log)</li>
+                <li>Your locally stored device data (cleared when you sign out or uninstall the app)</li>
               </ul>
               <p style={{ marginTop: '14px' }}>
-                Voice audio and translated text were never stored on our servers in the first place — they are processed in real time and discarded — so there is nothing further to delete on that front.
+                We do not store conversation transcripts or voice audio on our servers, so there is no conversation history to delete.
               </p>
             </section>
 
             <section className="privacy-section">
-              <h2 className="privacy-section-title"><span>3.</span> What is retained, and why</h2>
-              <p>
-                Some records are kept after account deletion because Danish law requires it. Specifically:
-              </p>
+              <h2 className="privacy-section-title"><span>What we retain (and why)</span></h2>
+              <p>Some data is retained where Danish law requires it:</p>
               <ul style={{ margin: '8px 0 0 18px', padding: 0, lineHeight: 1.7 }}>
-                <li><strong>Purchase records</strong> (transaction tokens, product IDs, timestamps) — retained for <strong>7 years</strong> from the transaction date, as required by the Danish Bookkeeping Act (<em>Bogføringsloven §10</em>).</li>
-                <li><strong>Billing audit log</strong> (credit grants, deductions, expirations) — retained for <strong>7 years</strong> from the event, on the same legal basis.</li>
-                <li><strong>Support correspondence</strong> tied to your account — typically up to 24 months; longer where law requires.</li>
-              </ul>
-              <p style={{ marginTop: '14px' }}>
-                These retained records are no longer linked to an active account. They sit in our books to satisfy accounting and audit obligations, are not used for any other purpose, and are deleted automatically once the legal retention period ends.
-              </p>
-            </section>
-
-            <section className="privacy-section">
-              <h2 className="privacy-section-title"><span>4.</span> Timeline</h2>
-              <ul style={{ margin: '8px 0 0 18px', padding: 0, lineHeight: 1.7 }}>
-                <li><strong>Day 0</strong> — You submit the deletion request (in-app or by email). The request is recorded as <em>pending</em>.</li>
-                <li><strong>Within 30 days</strong> — Your account and all associated operational data is deleted. You will lose access to the app's account-tied features (your credit balance, your usage history). Any remaining credits are forfeited at deletion.</li>
-                <li><strong>Up to 7 years</strong> — Purchase records and the billing audit log remain in our books per Danish accounting law, then are deleted automatically.</li>
+                <li><strong>Purchase records</strong> (transaction ID, amount, date, product purchased): retained for 5 years per Danish bookkeeping law (<em>bogføringsloven</em>). This is anonymized from your personal account after deletion — the records remain in our accounting books without your name or email attached.</li>
+                <li><strong>Audit log entries</strong> related to refunds or disputes: retained while the dispute is open, then anonymized.</li>
               </ul>
             </section>
 
             <section className="privacy-section">
-              <h2 className="privacy-section-title"><span>5.</span> Cancelling a pending request</h2>
+              <h2 className="privacy-section-title"><span>Timing</span></h2>
               <p>
-                Changed your mind? If your deletion request is still <em>pending</em> (i.e., the 30-day processing window hasn't completed), you can cancel it. Email <a href="mailto:support@seeyouyou.app?subject=Cancel%20account%20deletion" style={{ color: 'var(--brand-violet-deep)', fontWeight: 600 }}>support@seeyouyou.app</a> from your account address with the subject line <em>"Cancel account deletion"</em>. Once the deletion has been processed, it cannot be undone — the data is gone.
+                We complete account deletion within 30 days of your request. Most deletions complete within 7 days.
               </p>
             </section>
 
             <section className="privacy-section">
-              <h2 className="privacy-section-title"><span>6.</span> A note on Google sign-in</h2>
+              <h2 className="privacy-section-title"><span>Questions</span></h2>
               <p>
-                If you sign in with Google, deleting your SeeYouYou account does not delete your Google account, and it does not revoke SeeYouYou's permission to read your basic Google profile fields on a future sign-in. To revoke SeeYouYou's access to your Google account entirely, visit your Google Account at <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brand-violet-deep)', fontWeight: 600 }}>myaccount.google.com/permissions</a> and remove SeeYouYou from the list of connected apps.
+                Email <a href="mailto:support@seeyouyou.app?subject=Account%20Deletion%20Question" style={{ color: 'var(--brand-violet-deep)', fontWeight: 600 }}>support@seeyouyou.app</a> with the subject line "Account Deletion Question."
               </p>
             </section>
 
-            <section className="privacy-section">
-              <h2 className="privacy-section-title"><span>7.</span> Your broader privacy rights</h2>
-              <p>
-                Account deletion is one of several rights you have under GDPR. You can also request a copy of your data, correct it, or restrict its processing. See the full list of rights and how to exercise them in the <a href="../privacy/" style={{ color: 'var(--brand-violet-deep)', fontWeight: 600 }}>Privacy Policy</a> (§7).
-              </p>
-            </section>
+            <hr style={{ border: 0, borderTop: '1px dashed rgba(15, 20, 50, 0.18)', margin: '8px 0 18px' }}/>
 
-            <section className="privacy-section">
-              <h2 className="privacy-section-title"><span>8.</span> Questions</h2>
-              <p>
-                Email <a href="mailto:support@seeyouyou.app" style={{ color: 'var(--brand-violet-deep)', fontWeight: 600 }}>support@seeyouyou.app</a>. We respond within one month of receiving your request, in accordance with GDPR Article 12.
-              </p>
-            </section>
+            <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+              This page describes account deletion for the SeeYouYou Android app. For our full privacy policy, see <a href="../privacy/" style={{ color: 'var(--brand-violet-deep)', fontWeight: 600 }}>/privacy/</a>. For our terms of service, see <a href="../terms/" style={{ color: 'var(--brand-violet-deep)', fontWeight: 600 }}>/terms/</a>.
+            </p>
 
           </div>
         </article>
