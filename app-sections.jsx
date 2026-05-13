@@ -118,7 +118,7 @@ function _PhoneMockupOld() {
 /* ---------- How it works ---------- */
 function HowItWorks() {
   const steps = [
-    { n: '01', t: 'Open the app', d: 'Get 60 free credits, refreshed every 24 hours. No card, no trial gauntlet.' },
+    { n: '01', t: 'Open the app', d: 'Sign up and get 60 free credits. +10 added every 24 hours, capped at 60.' },
     { n: '02', t: 'Choose two languages', d: 'One for each speaker. 86 to choose from — each shown in its own script.' },
     { n: '03', t: 'Place the phone flat between you', d: 'The screen splits and rotates so both of you read your translation right-side-up. No passing the phone back.' },
     { n: '04', t: 'Talk in turns. Naturally.', d: 'When you stop, SeeYouYou translates instantly — keeping your tone, pitch, and meaning intact.' },
@@ -229,10 +229,10 @@ function PricingSection() {
   const tiers = [
     {
       name: 'Free', price: '$0', cad: 'forever',
-      tag: '60 free credits, refreshed daily',
-      desc: 'Open the app and start. No card, no trial gauntlet.',
+      tag: '60 free credits · +10 daily refill',
+      desc: 'Start with 60 free credits. +10 added every 24 hours, capped at 60.',
       credits: '60', creditUnit: 'free credits',
-      sub: 'Refreshed every 24 hours.',
+      sub: '+10 daily refill, capped at 60.',
       note: '',
       cta: 'Start free',
       kind: 'free',
@@ -393,7 +393,7 @@ function PrivacySection() {
             <p className="lede">
               Privacy isn't a feature here. It's the foundation. The architecture is built so we couldn't sell your conversations even if we wanted to — there's nothing to sell.
             </p>
-            <a className="link-arrow" href="#" data-action="privacy">Read the full Privacy Policy
+            <a className="link-arrow" href="/privacy/">Read the full Privacy Policy
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
             </a>
           </div>
@@ -480,8 +480,8 @@ function EmailSection() {
         <div className="email-grid">
           <div id="download" className="download-card">
             <h3>Get early access on Google Play</h3>
-            <p>60 free credits, refreshed daily. No card, no trial subscription.</p>
-            <a className="cta-primary big" href={TESTING_URL} target="_blank" rel="noopener noreferrer">
+            <p>60 free credits at sign-up, +10 daily. No card needed.</p>
+            <a className="cta-primary big" href={window.TESTING_URL} target="_blank" rel="noopener noreferrer">
               <PlayBadge/>
             </a>
             <p className="dl-meta">Free · Android 9+ · Age 16+ · Internal testing</p>

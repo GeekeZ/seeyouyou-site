@@ -5,7 +5,7 @@ const { useState, useEffect, useRef, useMemo } = React;
 
 // External CTA target — Internal Testing track on Google Play.
 // Update here when production listing goes live.
-const TESTING_URL = 'https://play.google.com/apps/internaltest/4701568051855899356';
+window.TESTING_URL = 'https://play.google.com/apps/internaltest/4701568051855899356';
 
 /* ---------- ScrollFloat hero headline ----------
    Wrap each word in a non-breaking span so words stay intact;
@@ -215,7 +215,7 @@ function Hero({ scrollProgress }) {
           opacity: Math.max(0, 1 - scrollProgress / 0.06),
         }}>
           <div className="cta-primary-stack">
-            <a className="cta-primary" href={TESTING_URL} target="_blank" rel="noopener noreferrer">
+            <a className="cta-primary" href={window.TESTING_URL} target="_blank" rel="noopener noreferrer">
               <PlayBadge />
             </a>
             <a className="hero-ios" href="#email" onClick={(e)=>{e.preventDefault(); document.getElementById('email').scrollIntoView({behavior:'smooth'});}}>
@@ -258,4 +258,4 @@ function PlayBadge() {
   );
 }
 
-Object.assign(window, { ScrollFloatHeadline, SlidePanel, PillNav, Logo, Hero, PlayBadge, TESTING_URL });
+Object.assign(window, { ScrollFloatHeadline, SlidePanel, PillNav, Logo, Hero, PlayBadge });
