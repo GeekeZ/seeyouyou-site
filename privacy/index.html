@@ -1,571 +1,88 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Privacy Policy &middot; SeeYouYou</title>
-  <meta name="description" content="SeeYouYou Privacy Policy v1.3. How the SeeYouYou voice translation app handles your personal data.">
-  <meta name="theme-color" content="#FEF8F4">
-  <link rel="stylesheet" href="/styles.css">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Privacy Policy — SeeYouYou</title>
+<meta name="description" content="SeeYouYou Privacy Policy v1.6 — how AvAmeliA handles your data. Plain language, GDPR-aware, no tracking."/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="../tokens.css"/>
+<link rel="stylesheet" href="../styles.css"/>
+
+<style>
+  /* Standalone-page background — mirrors the homepage atmosphere. */
+  html, body {
+    background: radial-gradient(ellipse at top, #0a1130 0%, #02050f 70%);
+    min-height: 100%;
+    color: #E0D4FC;
+  }
+  body { margin: 0; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  /* Standalone page: no animated bg canvas needed; keep it calm so the document is the focus. */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(124, 58, 237, 0.22), transparent 55%),
+      radial-gradient(circle at 80% 90%, rgba(59, 130, 246, 0.18), transparent 55%);
+    z-index: 1;
+    pointer-events: none;
+  }
+</style>
 </head>
-<body class="legal">
-  <main>
-    <p class="version-line">Version 1.3</p>
-    <h1>SeeYouYou Privacy Policy</h1>
+<body>
+
+<div id="root"></div>
+
+<!-- React + Babel (pinned) -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<!-- Shared content + data -->
+<script type="text/babel" src="../privacy-modal.jsx"></script>
+
+<script type="text/babel">
+  function PrivacyPage() {
+    return (
+      <div className="policy-page">
+        <div className="policy-topbar">
+          <a href="../" className="policy-back" aria-label="Back to SeeYouYou homepage">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+            <span>Back to SeeYouYou</span>
+          </a>
+          <span className="policy-brand">
+            <span className="policy-brand-dot"></span>
+            SeeYouYou
+          </span>
+        </div>
+        <article className="policy-card">
+          <header className="privacy-modal-head">
+            <div className="privacy-modal-titlewrap">
+              <div className="privacy-modal-eyebrow">
+                <span className="pm-dot"/>
+                <span>Privacy Policy</span>
+                <span className="pm-version">v{PRIVACY_DATA.version}</span>
+              </div>
+              <h1 className="privacy-modal-title">How we handle your data</h1>
+              <p className="privacy-modal-meta">
+                Effective {PRIVACY_DATA.effective} · Controller: {PRIVACY_DATA.controller}
+              </p>
+            </div>
+          </header>
+          <PrivacyContent standalone={true} />
+        </article>
+      </div>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<PrivacyPage />);
+</script>
 
-    <blockquote>
-      <p><strong>Version:</strong> 1.3<br>
-      <strong>Effective date:</strong> 2026-04-30<br>
-      <strong>Last updated:</strong> 2026-05-01<br>
-      <strong>Controller:</strong> AvAmeliA (sole proprietor), Denmark<br>
-      <strong>Contact:</strong> Geekez@gmail.com<br>
-      <strong>App identifier:</strong> app.seeyouyou.live (Android package)<br>
-      <strong>Brand:</strong> SeeYouYou<br>
-      <strong>Supersedes:</strong> SeeYouYou_Privacy_Policy_v1.2 (introduces session metadata category, Google Play purchase processing sub-processor, Danish accounting-law retention for purchase records, minimum age raised to 16, brand and email spelling corrected; this is a material change requiring re-acceptance)</p>
-    </blockquote>
-
-    <p>This Privacy Policy explains how SeeYouYou ("the App," "we," "us") handles
-    your personal data when you use the SeeYouYou mobile application. We've
-    written this in plain language. If anything is unclear, email us at
-    Geekez@gmail.com.</p>
-
-    <hr>
-
-    <h2>1. Who is responsible for your data</h2>
-
-    <p>The data controller is AvAmeliA, operating as a sole proprietorship
-    registered in Denmark. You can reach the controller at
-    <strong>Geekez@gmail.com</strong>.</p>
-
-    <p>If you are an EU/EEA resident, you have rights under the General Data
-    Protection Regulation (GDPR), and a Danish sole proprietorship is subject
-    to Danish data protection law (Datatilsynet supervision) and the GDPR.</p>
-
-    <hr>
-
-    <h2>2. What data SeeYouYou processes</h2>
-
-    <p>SeeYouYou is a real-time voice translation app. To do its job, it processes
-    the following categories of data:</p>
-
-    <h3>2.1 Voice audio (during a translation session)</h3>
-
-    <p>When you start a translation session, your device's microphone captures
-    audio. That audio is sent to Google's Gemini AI service via Firebase AI
-    Logic for translation and transcription.</p>
-
-    <ul>
-      <li><strong>Stored on our servers?</strong> No. We do not store voice audio on any server
-        we operate.</li>
-      <li><strong>Stored by Google?</strong> Voice audio is processed by Google for the duration
-        of your session. Google's data handling for Firebase AI Logic and Gemini
-        is governed by Google's own terms (linked in section 7).</li>
-      <li><strong>Retained on your device?</strong> No. Voice audio is held in memory only for
-        the moments needed to process it, then discarded.</li>
-    </ul>
-
-    <h3>2.2 Translated text (transcripts)</h3>
-
-    <p>The text translations that appear on your screen during a session.</p>
-
-    <ul>
-      <li><strong>Stored on our servers?</strong> No.</li>
-      <li><strong>Retained on your device?</strong> Translated text is held in the active
-        session view. When you end the session, transcripts are not persisted.
-        We do not maintain a transcript history.</li>
-    </ul>
-
-    <h3>2.3 Account information</h3>
-
-    <p>If you sign in with Google Sign-In, we receive:</p>
-    <ul>
-      <li>Your email address</li>
-      <li>Your display name</li>
-      <li>A unique user identifier (UID)</li>
-    </ul>
-
-    <p>We use this to:</p>
-    <ul>
-      <li>Identify your account across sessions</li>
-      <li>Grant you access to features tied to your account (e.g., credit
-        balance, family beta access)</li>
-      <li>Communicate with you if necessary (rare; only for account or service
-        issues)</li>
-    </ul>
-
-    <p>We do <strong>not</strong> use your account information for advertising, marketing,
-    profiling, or sale to third parties.</p>
-
-    <p>(Apple Sign-In is planned for Mode C and is not yet active in the
-    current version. The Apple button visible in the App today does not
-    transmit any data to Apple.)</p>
-
-    <h3>2.4 Acceptance records</h3>
-
-    <p>When you accept this Privacy Policy and the Terms of Service, we record:</p>
-    <ul>
-      <li>The version of the documents you accepted</li>
-      <li>The timestamp of acceptance</li>
-      <li>The app version at the time</li>
-    </ul>
-
-    <p>In the current version (Mode B family beta), this information is stored
-    <strong>locally on your device</strong> using Android SharedPreferences. It does not
-    leave your device. If you uninstall the App or clear app data, the
-    record is removed and you will be asked to re-accept on next install.</p>
-
-    <p>For Mode C public launch, we will introduce server-side acceptance
-    audit records (stored in Firebase or an equivalent backend). When that
-    happens, we will communicate the change through a version update of
-    this Policy and require re-acceptance.</p>
-
-    <p>The legal purpose of recording acceptance is to provide proof that
-    consent was given, which is required by GDPR. For the closed family
-    beta, local storage is appropriate proportionality: the cohort is
-    known to the controller, and email confirmation between you and the
-    controller serves as a parallel record.</p>
-
-    <h3>2.5 Device and language preferences</h3>
-
-    <p>Your selected source/target languages and voice picker preference are
-    stored locally on your device using Android SharedPreferences. We do
-    not transmit these to our servers.</p>
-
-    <h3>2.6 Crash reports and diagnostic data</h3>
-
-    <p>If the app crashes or encounters an error, we may receive a crash report
-    through Firebase Crashlytics. These reports include:</p>
-    <ul>
-      <li>Device model and OS version</li>
-      <li>App version</li>
-      <li>Crash stack trace (the technical error)</li>
-      <li>Anonymous device identifier</li>
-    </ul>
-
-    <p>Crash reports do <strong>not</strong> include voice audio, transcripts, contact lists,
-    photos, or any personally identifiable conversation content.</p>
-
-    <h3>2.7 What we do NOT collect</h3>
-
-    <p>We want to be explicit about this:</p>
-
-    <ul>
-      <li>We do not access your contacts.</li>
-      <li>We do not access your photos or camera (current version; future Mode C
-        may add an opt-in camera-as-tour-guide feature, governed by separate
-        consent).</li>
-      <li>We do not access your location (current version).</li>
-      <li>We do not read your SMS, calls, or other apps' data.</li>
-      <li>We do not track your behavior across other apps or websites.</li>
-      <li>We do not sell your data.</li>
-      <li>We do not use your conversations to train AI models.</li>
-    </ul>
-
-    <h3>2.8 Session metadata</h3>
-
-    <p>When you use the App to translate a conversation, we record a small set
-    of metadata about each session:</p>
-
-    <ul>
-      <li><strong>Start time</strong> and <strong>end time</strong> of the session</li>
-      <li>The <strong>languages</strong> you selected (source and target)</li>
-      <li>The number of <strong>credits consumed</strong> during the session</li>
-      <li>The <strong>reason the session ended</strong> (you stopped it, you ran out of
-        credits, you lost connection, the App was closed, etc.)</li>
-    </ul>
-
-    <p>This is <strong>not the content of your conversation.</strong> We do not record what
-    was said, what was translated, or any audio. Conversation content is
-    processed in real time and discarded &mdash; the v1.2 &sect;2.1 commitment ("we do
-    not store your voice audio") and &sect;2.2 commitment ("we do not store the
-    translated text") are preserved in v1.3 without exception.</p>
-
-    <p>We use session metadata to:</p>
-    <ul>
-      <li>Show you your usage history in the App's Usage screen (so you can see
-        how many sessions you've had, total time, and credits consumed over
-        time)</li>
-      <li>Bill credits accurately (the underlying billing logic uses session
-        metadata to determine what to charge)</li>
-      <li>Diagnose problems if a session ended unexpectedly</li>
-    </ul>
-
-    <p>Session metadata is tied to your account and retained per the schedule
-    in &sect;6.</p>
-
-    <hr>
-
-    <h2>3. Why we process your data (legal basis under GDPR)</h2>
-
-    <table>
-      <thead>
-        <tr><th>Data</th><th>Purpose</th><th>Legal basis</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Voice audio</td><td>Real-time translation</td><td>Performance of contract (Article 6(1)(b)) &mdash; you cannot use the app without it</td></tr>
-        <tr><td>Translated text</td><td>Display translation result</td><td>Performance of contract</td></tr>
-        <tr><td>Account info</td><td>Identify your account, grant access</td><td>Performance of contract</td></tr>
-        <tr><td>Acceptance records</td><td>Prove valid consent under GDPR</td><td>Legal obligation (Article 6(1)(c))</td></tr>
-        <tr><td>Crash reports</td><td>Fix bugs, improve reliability</td><td>Legitimate interest (Article 6(1)(f))</td></tr>
-        <tr><td>Session metadata (&sect;2.8)</td><td>Provide the translation service and bill credits accurately</td><td>Performance of contract (Article 6(1)(b))</td></tr>
-        <tr><td>Credit balance and history</td><td>Operate the credit system you're using</td><td>Performance of contract (Article 6(1)(b))</td></tr>
-        <tr><td>Purchase records</td><td>Comply with Danish accounting law (Bogf&oslash;ringsloven &sect;10) on transaction-record retention (7-year minimum period)</td><td>Legal obligation (Article 6(1)(c))</td></tr>
-      </tbody>
-    </table>
-
-    <p>For voice audio specifically: when you tap the microphone button, you
-    are consenting to that audio being processed for translation. You can
-    revoke this at any time by not tapping the button, by closing the app,
-    or by revoking microphone permission at the OS level.</p>
-
-    <hr>
-
-    <h2>4. Who we share data with (sub-processors)</h2>
-
-    <p>SeeYouYou uses third-party services to operate. Each is listed below
-    with what they receive and a link to their own privacy policy.</p>
-
-    <h3>4.1 Google Cloud / Firebase</h3>
-    <ul>
-      <li><strong>What they get:</strong> account information (via Firebase Authentication),
-        crash reports (via Firebase Crashlytics), voice audio (passed through
-        to Gemini), session metadata storage and credit ledger storage in
-        Firestore (region us-central1)</li>
-      <li><strong>Why:</strong> authentication, AI translation, error reporting, session
-        history and credit balance management</li>
-      <li><strong>Where:</strong> Google's infrastructure (US and EU regions; Firestore
-        region locked at us-central1)</li>
-      <li><strong>Their policy:</strong> <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></li>
-      <li><strong>Firebase AI Logic terms:</strong> <a href="https://firebase.google.com/terms/ai">https://firebase.google.com/terms/ai</a></li>
-    </ul>
-
-    <h3>4.2 Google Gemini (via Firebase AI Logic)</h3>
-    <ul>
-      <li><strong>What they get:</strong> voice audio during translation sessions</li>
-      <li><strong>Why:</strong> speech-to-text, translation, text-to-speech</li>
-      <li><strong>Their policy:</strong> <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></li>
-      <li><strong>Note:</strong> Google's Gemini API terms govern how voice data is handled.
-        We've configured the integration to minimize retention. Detailed
-        Gemini terms are reviewed pre-Mode-C launch.</li>
-    </ul>
-
-    <h3>4.3 Google ML Kit (on-device)</h3>
-    <ul>
-      <li><strong>What they get:</strong> nothing &mdash; ML Kit Language Identification runs
-        entirely on your device. No data leaves your device for this feature.</li>
-      <li><strong>Why:</strong> detect which language is being spoken (used to gate the
-        microphone and improve translation accuracy)</li>
-    </ul>
-
-    <h3>4.4 Google Play (purchase processing)</h3>
-
-    <p>When you purchase credit packs or subscribe to SeeYouYou Monthly,
-    <strong>Google Play handles the payment entirely.</strong> We never receive your card
-    number, bank account details, or any other payment instrument. Google
-    Play sends us:</p>
-
-    <ul>
-      <li>A purchase token (a unique string identifying the purchase)</li>
-      <li>The product you purchased (e.g., "Medium Pack")</li>
-      <li>The order timestamp</li>
-    </ul>
-
-    <p>We use this information to credit your account and to comply with Danish
-    accounting-law record retention (see &sect;6).</p>
-
-    <p>Google Play is governed by Google's own terms and privacy policy. By
-    purchasing through Google Play you agree to those terms in addition to
-    ours.</p>
-
-    <h3>4.5 Apple (planned, not yet active)</h3>
-    <ul>
-      <li><strong>Status:</strong> Apple Sign-In is planned post-Mode-C and is not active in
-        the current version. No data is shared with Apple at this time.</li>
-      <li>When Mode C ships, this section will be updated to describe what
-        Apple receives, and you will be asked to re-accept the updated Policy.</li>
-    </ul>
-
-    <p>We do <strong>not</strong> share your data with advertisers, data brokers, social
-    networks, or analytics providers beyond what's listed above.</p>
-
-    <hr>
-
-    <h2>5. Where your data is stored</h2>
-
-    <ul>
-      <li><strong>On your device:</strong> language preferences, voice picker selection,
-        acceptance records (Mode B).</li>
-      <li><strong>In Firebase Authentication (Google Cloud):</strong> account info (email,
-        display name, UID). Located in Google's infrastructure, region
-        us-central1 (Iowa, USA).</li>
-      <li><strong>In Firestore (Google Cloud):</strong> session metadata, credit balance and
-        history, purchase records, billing audit log entries. Region
-        us-central1 (Iowa, USA).</li>
-      <li><strong>In transit:</strong> voice audio is transmitted to Google's Gemini servers
-        during the active translation session, then discarded.</li>
-    </ul>
-
-    <p>If you are in the EU/EEA and the data is processed outside the EU/EEA,
-    the transfer happens under Standard Contractual Clauses (SCCs) approved
-    by the European Commission. Google publishes its SCCs at:
-    <a href="https://cloud.google.com/terms/sccs">https://cloud.google.com/terms/sccs</a></p>
-
-    <p>We are evaluating EU-region Firestore deployment for a future version;
-    any change to data storage location will be a material update requiring
-    re-acceptance per &sect;10.</p>
-
-    <hr>
-
-    <h2>6. How long we keep your data</h2>
-
-    <table>
-      <thead>
-        <tr><th>Data category</th><th>Retention period</th><th>Why</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Account info (Firebase Auth UID, email, sign-in method, acceptance records)</td><td>Account lifetime + 30 days after deletion request<sup>1</sup></td><td>Operational; identifies your account.</td></tr>
-        <tr><td>Voice audio</td><td><strong>Not stored</strong></td><td>Processed in real time, discarded immediately.</td></tr>
-        <tr><td>Translated text</td><td><strong>Not stored</strong></td><td>Same &mdash; never persisted.</td></tr>
-        <tr><td>Session metadata (&sect;2.8)</td><td>Account lifetime + 30 days after deletion request</td><td>Powers your Usage screen and billing accuracy.</td></tr>
-        <tr><td>Credit balance and history</td><td>Account lifetime + 30 days after deletion request</td><td>Operational; tied to your account.</td></tr>
-        <tr><td>Purchase records (transaction tokens, product IDs, timestamps)</td><td><strong>7 years</strong> from transaction date</td><td><strong>Required by Danish accounting law</strong> (Bogf&oslash;ringsloven &sect;10). Cannot be deleted before this period elapses.</td></tr>
-        <tr><td>Billing audit log (credit grants, deductions, expirations)</td><td><strong>7 years</strong> from event</td><td>Same &mdash; Danish accounting-law requirement; covers credits as a unit-of-account in our books.</td></tr>
-        <tr><td>Crashlytics diagnostic data</td><td>90 days</td><td>Per Firebase Crashlytics default.</td></tr>
-      </tbody>
-    </table>
-
-    <blockquote>
-      <p><strong><sup>1</sup> Footnote on account deletion requests (added 2026-05-01).</strong></p>
-      <p>When you submit an account deletion request through the App's
-      Profile screen ("Delete account"), the App records the request in
-      our backend (a small audit document containing your account UID,
-      the timestamp of the request, your account email, and a status
-      field reading "pending"). This is operational data that lets us
-      track and process deletion requests reliably.</p>
-      <p>The audit document is part of your <strong>account information</strong> for
-      retention purposes &mdash; it is removed alongside your other account
-      data when the deletion is processed (within 30 days of the
-      request). It is not subject to the 7-year accounting-law retention
-      that applies to purchase records and the billing audit log,
-      because the deletion-request document is not a financial record.</p>
-      <p>If you change your mind about a pending deletion request, contact
-      <strong>Geekez@gmail.com</strong> with your account email; we can cancel the
-      request before it is processed.</p>
-      <p>The deletion-request audit pattern was added in the App version
-      that includes the credit system (Mode C public launch). It does
-      not change v1.3's underlying retention commitments &mdash; it
-      clarifies how the in-App "Delete account" affordance operates
-      behind the scenes.</p>
-    </blockquote>
-
-    <hr>
-
-    <h2>7. Your rights under GDPR</h2>
-
-    <p>If you are an EU/EEA resident, you have the following rights:</p>
-
-    <ul>
-      <li><strong>Right of access:</strong> Ask us what personal data we have about you.</li>
-      <li><strong>Right to rectification:</strong> Correct inaccurate data.</li>
-      <li><strong>Right to erasure ("right to be forgotten"):</strong> Delete your data,
-        subject to legal retention requirements.
-
-        <p>Some data cannot be deleted on request, even with a valid erasure
-        claim, where Danish law requires us to retain it. Specifically:
-        purchase records and billing audit log entries must be retained for
-        7 years from the transaction date per Bogf&oslash;ringsloven &sect;10. We will
-        delete all other data tied to your account; the accounting-law-required
-        records remain in our books for the legal retention period and are
-        then deleted automatically.</p>
-      </li>
-      <li><strong>Right to restrict processing:</strong> Pause our use of your data.</li>
-      <li><strong>Right to data portability:</strong> Receive your data in a machine-readable
-        format.
-
-        <p>Your data export will include account info, session metadata (per
-        &sect;2.8), credit balance and history, and acceptance records.</p>
-      </li>
-      <li><strong>Right to object:</strong> Object to processing based on legitimate interest.</li>
-      <li><strong>Right to withdraw consent:</strong> Where processing is based on consent,
-        withdraw it at any time (without affecting prior lawful processing).</li>
-      <li><strong>Right to lodge a complaint:</strong> With your local data protection
-        authority. In Denmark, this is <strong>Datatilsynet</strong> (<a href="https://www.datatilsynet.dk">https://www.datatilsynet.dk</a>).</li>
-    </ul>
-
-    <p>To exercise any of these rights, email <strong>Geekez@gmail.com</strong> with the
-    subject line "Privacy Request" and describe what you want. We aim to
-    respond within 30 days.</p>
-
-    <hr>
-
-    <h2>8. Security</h2>
-
-    <p>We use industry-standard security measures:</p>
-
-    <ul>
-      <li>All network traffic to Google's servers is encrypted (TLS).</li>
-      <li>Authentication uses Google's hardened Identity Platform (formerly
-        Firebase Authentication).</li>
-      <li>We do not store passwords ourselves &mdash; Google handles authentication.</li>
-      <li>Server-side Firebase ID-token verification on every credit ledger API
-        request (per ADR-009 &sect;5).</li>
-      <li>Payment processing isolation &mdash; Google Play handles all payment
-        instruments; SeeYouYou never sees card or bank data; we never receive
-        PCI-scope information.</li>
-    </ul>
-
-    <p>No system is perfectly secure. We will notify affected users within
-    72 hours of becoming aware of a personal data breach that affects them,
-    in accordance with GDPR Article 34.</p>
-
-    <hr>
-
-    <h2>9. Children</h2>
-
-    <p>SeeYouYou is not intended for children under 16. If you are under 16,
-    do not use this app. If you are a parent and become aware that your
-    child has provided us with personal data, contact us at
-    Geekez@gmail.com and we will delete the account.</p>
-
-    <p>The minimum age of 16 aligns with GDPR Article 8 (default age of
-    consent for processing children's personal data in EU/EEA jurisdictions,
-    including Denmark).</p>
-
-    <hr>
-
-    <h2>10. Changes to this policy</h2>
-
-    <p>We may update this Privacy Policy. When we do, we will:</p>
-
-    <ul>
-      <li>Bump the version number (e.g., 1.2 &rarr; 1.3)</li>
-      <li>Update the "Effective date" at the top</li>
-      <li>For material changes, prompt you in-app to re-accept the new version
-        before continuing to use the app</li>
-    </ul>
-
-    <p><strong>Material changes that require re-acceptance include:</strong> introduction of
-    paid tiers; changes to pricing; changes to data processing categories
-    (e.g., session metadata); changes to data retention periods; changes to
-    the sub-processor list; changes to your rights or our obligations;
-    changes that meaningfully shift the privacy posture of the App.</p>
-
-    <p>Your continued use of the app after the effective date of an update
-    indicates acceptance, but for material changes we will require explicit
-    re-acceptance through the in-app modal.</p>
-
-    <p>The change from v1.2 to v1.3 is a material change requiring re-acceptance
-    because it introduces session metadata storage, credit purchase
-    processing, and a sub-processor relationship with Google Play.</p>
-
-    <blockquote>
-      <p><strong>2026-05-01 &sect;6 footnote addition is non-material.</strong> It documents how
-      the in-App "Delete account" affordance operates behind the scenes (a
-      small audit document tied to your account UID + retired alongside your
-      other account data within 30 days of processing). It does not introduce
-      a new data processing category, a new sub-processor, a new retention
-      period, or any change to your GDPR rights &mdash; the audit document falls
-      within the existing "Account info" retention scope. Per the v1.3 &sect;10
-      non-material change criteria, this footnote does not require
-      re-acceptance and does not bump the Policy to v1.4.</p>
-    </blockquote>
-
-    <hr>
-
-    <h2>11. Contact</h2>
-
-    <p>For privacy questions, requests, complaints, or feedback:</p>
-
-    <p><strong>Email:</strong> Geekez@gmail.com<br>
-    <strong>Subject line:</strong> Privacy Request (or whatever's relevant)</p>
-
-    <p>For more about the SeeYouYou app and the company behind it, visit
-    <a href="https://seeyouyou.app">https://seeyouyou.app</a> (live once the static page is deployed).</p>
-
-    <hr>
-
-    <h2>12. About SeeYouYou</h2>
-
-    <p>SeeYouYou is a personal project run by AvAmeliA, a sole proprietor in
-    Denmark. It is not a venture-backed startup. The app exists to help
-    people communicate across language barriers &mdash; from a market-stall
-    conversation to a hospital reception desk to a friend's grandmother
-    across the language gap.</p>
-
-    <p>We treat your privacy with the seriousness it deserves because we
-    believe trust is what makes a translation tool actually useful. If you
-    have feedback, we read every email.</p>
-
-    <hr>
-
-    <h2>13. Document history</h2>
-
-    <ul>
-      <li><strong>v1.0</strong> &mdash; Initial public draft.</li>
-      <li><strong>v1.1</strong> &mdash; Firestore&rarr;SharedPreferences for the family beta period;
-        package name finalized.</li>
-      <li><strong>v1.2</strong> &mdash; Apple Sign-In status corrected; minor updates (effective
-        2026-04-27).</li>
-      <li><strong>v1.3 (effective 2026-04-30)</strong> &mdash; Mode C public launch deltas:
-        <ul>
-          <li><strong>&sect;2.8 NEW</strong> &mdash; Session metadata category (start time, end time,
-            languages, credits consumed, reason for end). Conversation content
-            NOT retained &mdash; v1.2 &sect;2.1 and &sect;2.2 commitments preserved without
-            exception.</li>
-          <li><strong>&sect;3</strong> &mdash; Added legal basis rows for session metadata, credit
-            balance, and purchase records.</li>
-          <li><strong>&sect;4.1</strong> &mdash; Sub-processor scope expanded for Firestore session/credit
-            storage in us-central1.</li>
-          <li><strong>&sect;4.4 NEW</strong> &mdash; Google Play sub-processor for purchase processing.
-            Clarified that we never receive card or bank details &mdash; Google Play
-            handles all payment.</li>
-          <li><strong>&sect;4.5</strong> &mdash; Apple repositioned to "planned post-Mode-C" (was
-            "planned for Mode C" in v1.2).</li>
-          <li><strong>&sect;5</strong> &mdash; Storage locations updated; us-central1 region for Firestore
-            locked; EU region noted as future evaluation.</li>
-          <li><strong>&sect;6</strong> &mdash; Retention table updated with session metadata (account-
-            lifetime + 30-day wind-down), purchase records and audit log
-            entries (7-year retention for Danish accounting law compliance).</li>
-          <li><strong>&sect;7</strong> &mdash; Right to data portability now explicitly includes session
-            metadata; right to erasure carve-out for accounting-law-required
-            records.</li>
-          <li><strong>&sect;8</strong> &mdash; Security section updated to mention server-side ID-token
-            verification + payment processing isolation.</li>
-          <li><strong>&sect;9</strong> &mdash; Minimum age raised from 13 to 16, aligned with GDPR
-            Article 8 default for Danish jurisdiction.</li>
-          <li><strong>&sect;10</strong> &mdash; Material change criteria expanded.</li>
-          <li><strong>&sect;11</strong> &mdash; Contact email spelling corrected from "Geekeez@gmail.com"
-            to <strong>Geekez@gmail.com</strong> (the correct address). The misspelled v1.2
-            address may continue to forward via Gmail dot/spelling tolerance,
-            but Geekez@gmail.com is canonical.</li>
-          <li><strong>&sect;12</strong> &mdash; Brand "Avamelia" &rarr; "AvAmeliA" (consistent capitalization
-            used throughout this version).</li>
-          <li>This is a material change requiring re-acceptance.</li>
-        </ul>
-      </li>
-      <li><strong>2026-05-01 &sect;6 footnote addition (Session 28 governance batch v15.3).</strong>
-        Non-material textual addition documenting the deletion-request
-        audit document retention scope. Does NOT bump to v1.4 &mdash; falls
-        within existing "Account info" retention scope per v1.3 &sect;10
-        non-material-change criteria. Companion to the in-App "Delete
-        account" affordance landed in C-5b.1 (Session 28).</li>
-    </ul>
-
-    <hr>
-
-    <p><em>Document version: SeeYouYou_Privacy_Policy_v1.3</em><br>
-    <em>Bundled with app version: in-APK Markdown, displayed via full-screen
-    acceptance gate on first sign-in (and on version bumps), accessible from
-    Profile screen at any time.</em></p>
-  </main>
-  <footer>
-    <div class="footer-inner">
-      <span>&copy; 2026 AvAmeliA</span>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/terms/">Terms</a>
-      </nav>
-    </div>
-  </footer>
 </body>
 </html>
